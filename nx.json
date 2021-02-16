@@ -1,0 +1,49 @@
+{
+  "npmScope": "flight-workspace",
+  "affected": { "defaultBase": "master" },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+    }
+  },
+  "--tasksRunnerOptions": {
+    "default": {
+      "runner": "@apployees-nx/level-task-runner",
+      "options": {
+        "cacheableOperations": ["build", "test", "lint", "e2e"],
+        "levelTaskRunnerOptions": {
+          "driver": "mongodown",
+          "host": "127.0.0.1",
+          "port": 27017,
+          "name": "cache",
+          "collection": "nx-cache"
+        }
+      }
+    }
+  },
+  "projects": {
+    "flight-app": { "tags": [] },
+    "flight-app-e2e": { "tags": [], "implicitDependencies": ["flight-app"] },
+    "flight-lib": { "tags": [] },
+    "logger-lib": { "tags": [] },
+    "dashboard-lib": { "tags": [] },
+    "flight-admin": { "tags": [] },
+    "flight-admin-e2e": {
+      "tags": [],
+      "implicitDependencies": ["flight-admin"]
+    },
+    "dashboard": { "tags": [] },
+    "dashboard-e2e": { "tags": [], "implicitDependencies": ["dashboard"] },
+    "external": { "tags": [] },
+    "external-e2e": { "tags": [], "implicitDependencies": ["external"] }
+  }
+}
