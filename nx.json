@@ -31,23 +31,55 @@
     }
   },
   "projects": {
-    "flight-app": { "tags": [] },
-    "flight-app-e2e": { "tags": [], "implicitDependencies": ["flight-app"] },
-    "flight-lib": { "tags": [] },
-    "logger-lib": { "tags": [] },
-    "dashboard-lib": { "tags": [] },
-    "flight-admin": { "tags": [] },
+    "flight-app-e2e": {
+      "tags": ["e2e"],
+      "implicitDependencies": ["flight-app"]
+    },
     "flight-admin-e2e": {
-      "tags": [],
+      "tags": ["e2e"],
       "implicitDependencies": ["flight-admin"]
     },
-    "dashboard": { "tags": [] },
-    "dashboard-e2e": { "tags": [], "implicitDependencies": ["dashboard"] },
-    "external": { "tags": [] },
-    "external-e2e": { "tags": [], "implicitDependencies": ["external"] },
-    "luggage-domain": { "tags": ["domain:luggage", "type:domain-logic"] },
-    "luggage": { "tags": ["domain:luggage", "type:app"] },
-    "luggage-e2e": { "tags": [], "implicitDependencies": ["luggage"] },
-    "luggage-feature-checkin": { "tags": ["domain:luggage", "type:feature"] }
+    "dashboard-e2e": {
+      "tags": ["e2e"],
+      "implicitDependencies": ["dashboard"]
+    },
+    "external-e2e": {
+      "tags": ["e2e"],
+      "implicitDependencies": ["external"]
+    },
+    "flight-app": {
+      "tags": ["domain:flights"]
+    },
+    "flight-admin": {
+      "tags": ["domain:flights"]
+    },
+    "flight-lib": {
+      "tags": ["domain:flights", "type:domain-logic"]
+    },
+    "logger-lib": {
+      "tags": ["domain:shared"]
+    },
+    "dashboard": {
+      "tags": ["domain:dashboard"]
+    },
+    "dashboard-lib": {
+      "tags": ["domain:dashboard", "type:domain-logic"]
+    },
+    "external": {
+      "tags": ["domain:external"]
+    },
+    "luggage-domain": {
+      "tags": ["domain:luggage", "type:domain-logic"]
+    },
+    "luggage": {
+      "tags": ["domain:luggage", "type:app"]
+    },
+    "luggage-e2e": {
+      "tags": ["e2e"],
+      "implicitDependencies": ["luggage"]
+    },
+    "luggage-feature-checkin": {
+      "tags": ["domain:luggage", "type:feature"]
+    }
   }
 }

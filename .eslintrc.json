@@ -13,6 +13,12 @@
           "allow": [],
           "depConstraints": [
             {
+              "sourceTag": "e2e",
+              "onlyDependOnLibsWithTags": [
+                "*"
+              ]
+            },
+            {
               "sourceTag": "type:app",
               "onlyDependOnLibsWithTags": [
                 "type:api",
@@ -45,6 +51,27 @@
             {
               "sourceTag": "type:domain-logic",
               "onlyDependOnLibsWithTags": ["type:util"]
+            },
+            {
+              "sourceTag": "domain:flights",
+              "onlyDependOnLibsWithTags": [
+                "domain:flights",
+                "domain:shared"
+              ]
+            },
+            {
+              "sourceTag": "domain:dashboard",
+              "onlyDependOnLibsWithTags": [
+                "domain:dashboard",
+                "domain:shared"
+              ]
+            },
+            {
+              "sourceTag": "domain:external",
+              "onlyDependOnLibsWithTags": [
+                "domain:external",
+                "domain:shared"
+              ]
             },
             {
               "sourceTag": "domain:shared",
