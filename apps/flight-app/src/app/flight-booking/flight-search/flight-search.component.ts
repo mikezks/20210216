@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import * as fromFlightBooking from '../+state';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'flight-search',
   templateUrl: './flight-search.component.html',
   styleUrls: ['./flight-search.component.css']
@@ -23,8 +24,8 @@ export class FlightSearchComponent implements OnInit {
 
   // "shopping basket" with selected flights
   basket: object = {
-    "3": true,
-    "5": true
+    3: true,
+    5: true
   };
 
   constructor(
