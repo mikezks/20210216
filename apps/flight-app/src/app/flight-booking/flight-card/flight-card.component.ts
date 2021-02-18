@@ -1,4 +1,6 @@
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -15,7 +17,7 @@ import {Flight} from '@flight-workspace/flight-lib';
 @Component({
   selector: 'flight-card',
   templateUrl: './flight-card.component.html',
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FlightCardComponent implements OnInit, OnChanges, OnDestroy {
 
@@ -23,10 +25,14 @@ export class FlightCardComponent implements OnInit, OnChanges, OnDestroy {
   @Input() selected: boolean;
   @Output() selectedChange = new EventEmitter<boolean>();
 
-  constructor(private element: ElementRef, private zone: NgZone) {
+  constructor(
+    private cd: ChangeDetectorRef,
+    private element: ElementRef,
+    private zone: NgZone) {
   }
 
   ngOnInit() {
+    // this.cd.markForCheck()
   }
 
   ngOnChanges(changes: SimpleChanges): void {
