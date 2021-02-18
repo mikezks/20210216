@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {FakeFlightService, Flight, FlightService} from '@flight-workspace/flight-lib';
+import { Component, OnInit } from '@angular/core';
+import { Flight, FlightService } from '@flight-workspace/flight-lib';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
 import * as fromFlightBooking from '../+state';
 
 @Component({
@@ -19,55 +18,40 @@ export class FlightSearchComponent implements OnInit {
 
   flights$: Observable<Flight[]>;
 
-  /* get flights() {
-    return this.flightService.flights;
-  } */
-
   // "shopping basket" with selected flights
   basket: object = {
     3: true,
     5: true
   };
 
-  constructor(
-    private flightService: FlightService,
-    private store: Store<fromFlightBooking.FeatureAppState>) {
-  }
+  constructor(private store: Store<fromFlightBooking.FeatureAppState>) {}
 
   ngOnInit() {
-    this.flights$ = this.store.pipe(select(state => state.flightBooking.flights));
+    this.flights$ = this.store.pipe(
+      // select(state => state.flightBooking.flights)
+      select(fromFlightBooking.selectFlights)
+    );
   }
 
   search(): void {
     if (!this.from || !this.to) return;
 
-    /* this.flightService
-      .load(this.from, this.to, this.urgent); */
-
-    this.flightService.find(this.from, this.to)
-      .subscribe(flights =>
-        this.store.dispatch(
-          fromFlightBooking.flightsLoaded({ flights })
-        )
-      );
+    this.store.dispatch(
+      fromFlightBooking.flightsLoad({
+        from: this.from,
+        to: this.to
+      })
+    );
   }
 
-  delay(): void {
-    // this.flightService.delay();
-
-    this.flights$.pipe(take(1))
-      .subscribe(flights => {
-        const oldFlight = flights[0];
-
-        this.store.dispatch(
-          fromFlightBooking.flightUpdate({ flight: {
-            ...oldFlight,
-            date: addMinutesToDate(oldFlight.date, 15).toISOString()
-          }})
-        );
-      });
+  delay(flight: Flight): void {
+    this.store.dispatch(
+      fromFlightBooking.flightUpdate({ flight: {
+        ...flight,
+        date: addMinutesToDate(flight.date, 15).toISOString()
+      }})
+    );
   }
-
 }
 
 export const addMinutesToDate = (date: Date | string, minutes: number): Date => {
