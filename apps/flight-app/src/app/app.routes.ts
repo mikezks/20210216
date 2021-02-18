@@ -10,7 +10,7 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: /* withRoute( */HomeComponent/* ) */
   },
   {
     path: 'flight-booking',

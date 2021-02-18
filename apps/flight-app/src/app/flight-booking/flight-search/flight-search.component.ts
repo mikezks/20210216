@@ -8,7 +8,10 @@ import * as fromFlightBooking from '../+state';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'flight-search',
   templateUrl: './flight-search.component.html',
-  styleUrls: ['./flight-search.component.css']
+  styleUrls: ['./flight-search.component.css']/* ,
+  providers : [
+    { provide: FlightService, useFactory: () => {}, deps: [Store] }
+  ] */
 })
 export class FlightSearchComponent implements OnInit {
 

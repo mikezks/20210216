@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   expertMode = false;
   needsLogin$: Observable<boolean>;
   _userName = '';
+  /* @Input() firstname: string; */
 
   get userName(): string {
     return this._userName;

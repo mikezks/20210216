@@ -8,7 +8,10 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+// Platform providers
+platformBrowserDynamic([
+  { provide: 'token', useValue: 'meine app' }
+]).bootstrapModule(AppModule, /* { ngZone: 'noop' } */);
 
 
 
