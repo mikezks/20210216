@@ -9,11 +9,13 @@ import { environment } from '../../environments/environment';
 
 
 export interface State {
-
+  /* userState: {
+    name: string
+  }; */
 }
 
 export const reducers: ActionReducerMap<State> = {
-
+  // userState
 };
 
 

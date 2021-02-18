@@ -13,11 +13,11 @@ export const APP_ROUTES: Routes = [
     path: 'home',
     component: HomeComponent
   },
-  /* {
-    path: 'flights',
-    //loadChildren: () => import('./flight-booking/flight-booking.module').then(m => m.FlightBookingModule)
-    loadChildren: () => FlightBookingModule
-  }, */
+  {
+    path: 'flight-booking',
+    loadChildren: () => import('./flight-booking/flight-booking.module').then(m => m.FlightBookingModule)
+    // loadChildren: () => FlightBookingModule
+  },
   {
     path: 'basket',
     component: BasketComponent,
