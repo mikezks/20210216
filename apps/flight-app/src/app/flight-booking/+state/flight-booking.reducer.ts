@@ -25,6 +25,11 @@ export const reducer = createReducer(
     return { ...state, flights };
   }),
 
+  on(FlightBookingActions.flightUpdate, (state, action) => {
+    const flights = state.flights.map(f => f.id === action.flight.id ? action.flight : f);
+    return { ...state, flights };
+  }),
+
   /* on(FlightBookingActions.loadFlightBookings, state => state),
   on(FlightBookingActions.loadFlightBookingsSuccess, (state, action) => state),
   on(FlightBookingActions.loadFlightBookingsFailure, (state, action) => state), */

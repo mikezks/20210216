@@ -6,11 +6,12 @@ export const flightsLoaded = createAction(
   props<{ flights: Flight[] }>()
 );
 
-/* export const loadFlightBookings = createAction(
-  '[FlightBooking] Load FlightBookings'
+export const flightUpdate = createAction(
+  '[FlightBooking] Flight update',
+  props<{ flight: Flight }>()
 );
 
-export const loadFlightBookingsSuccess = createAction(
+/* export const loadFlightBookingsSuccess = createAction(
   '[FlightBooking] Load FlightBookings Success',
   props<{ data: any }>()
 );

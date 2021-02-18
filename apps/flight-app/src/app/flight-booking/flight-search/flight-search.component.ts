@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FakeFlightService, Flight, FlightService} from '@flight-workspace/flight-lib';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 import * as fromFlightBooking from '../+state';
 
 @Component({
@@ -52,7 +53,24 @@ export class FlightSearchComponent implements OnInit {
   }
 
   delay(): void {
-    this.flightService.delay();
+    // this.flightService.delay();
+
+    this.flights$.pipe(take(1))
+      .subscribe(flights => {
+        const oldFlight = flights[0];
+
+        this.store.dispatch(
+          fromFlightBooking.flightUpdate({ flight: {
+            ...oldFlight,
+            date: addMinutesToDate(oldFlight.date, 15).toISOString()
+          }})
+        );
+      });
   }
 
 }
+
+export const addMinutesToDate = (date: Date | string, minutes: number): Date => {
+  let dateObj = date instanceof Date ? date : new Date(date);
+  return new Date(dateObj.getTime() + minutes * 60 * 1_000);
+};
